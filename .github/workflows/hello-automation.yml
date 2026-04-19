@@ -1,0 +1,15 @@
+name: My Frist Automation
+on: [push]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        users: actions/checkout@v4
+
+      - name: Show message
+        run: echo "Hello, Your first pipeline is running."
+
+      - name: Check Linux Version
+        run: lsb_release -a

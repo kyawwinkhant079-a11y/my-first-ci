@@ -1,15 +1,20 @@
-name: My First Automation
-on: [push] # code ကို push လုပ်တိုင်း အလုပ်လုပ်ပါ
+name: Step 2 - Real Build and Test
+on: [push]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4 # ကိုယ့် code တွေကို runner စက်ထဲ ဆွဲယူတာ
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Show message
-        run: echo "Hello Win Khant! Your first pipeline is running."
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Check Linux Version
-        run: lsb_release -a
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Test Case
+        run: npm test

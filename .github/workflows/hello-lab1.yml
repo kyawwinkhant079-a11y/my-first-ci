@@ -11,15 +11,16 @@ jobs:
         uses: actions/checkout@v4
       
       - name: 2. All Of Info
-        runs: |
+        run: |
           echo "Lab 2 Successfully Completed"
-          if github.ref == 'refs/heads/main'
-          echo "This step runs only on pushes to main"
-
-          if github.ref == 'refs/heads/dev'
-          echo "This step runs only on pushes to dev"
-          echo "Current Time: $(date)"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "This step runs only on pushes to main"
+          fi
+          
+          if [ "${{ github.ref }}" = "refs/heads/dev" ]; then
+            echo "This step runs only on pushes to dev"
+            echo "Current Time: $(date)"
+          fi
           
       - name: 3. Show Current User
         run: whoami
-       

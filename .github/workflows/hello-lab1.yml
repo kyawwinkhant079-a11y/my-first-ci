@@ -1,19 +1,28 @@
-name: lab 1 - My First Thinking
-on: [push]
+name: Lab 2 - Branch Thinking
+on:
+  push:
+    branches: [main, dev]
 
 jobs:
-  WelcomeJob:
+  BranchTest:
     runs-on: ubuntu-latest
     steps:
-      - name: 1. Pulling My Code
+      - name: 1. Checkout Code
         uses: actions/checkout@v4
 
-      - name: 1. Say Hello to DevOps
-        run: echo "Automation Success !"
-      
-      - name: 3. Show System Info
-        run: |
-          echo "Current date is:"
-          date
-          echo "Current user is:"
-          whoami
+      - name: 2. Always Run
+        run: echo "This step runs; on every push to main or dev"
+
+      - name: 3. Main only Step
+        if: github.ref == 'refs/heads/main'
+        run: echo "This step runs only on pushes to main"
+
+      - name: 4. Dev only Step
+        if: github.ref == 'refs/heads/dev'
+        run: echo "This step runs only on pushes to dev"
+
+      - name: 5. Show Current Time
+        run: date
+
+      - name: 6. Show Current User
+        run: whoami

@@ -1,8 +1,0 @@
-{
-  "name": "my-first-ci",
-  "version": "1.0.0",
-  "scripts": {
-    "test": "echo \"Success: No tests specified\" && exit 0",
-    "start": "node server.js"
-  }
-}

@@ -1,5 +1,5 @@
-name: Lab 2 - Branch Thinking
-on:
+name: Lab 2 - Modified Thinking
+on: 
   push:
     branches: [main, dev]
 
@@ -9,20 +9,17 @@ jobs:
     steps:
       - name: 1. Checkout Code
         uses: actions/checkout@v4
+      
+      - name: 2. All Of Info
+        runs: |
+          echo "Lab 2 Successfully Completed"
+          if github.ref == 'refs/heads/main'
+          echo "This step runs only on pushes to main"
 
-      - name: 2. Always Run
-        run: echo "This step runs; on every push to main or dev"
-
-      - name: 3. Main only Step
-        if: github.ref == 'refs/heads/main'
-        run: echo "This step runs only on pushes to main"
-
-      - name: 4. Dev only Step
-        if: github.ref == 'refs/heads/dev'
-        run: echo "This step runs only on pushes to dev"
-
-      - name: 5. Show Current Time
-        run: date
-
-      - name: 6. Show Current User
+          if github.ref == 'refs/heads/dev'
+          echo "This step runs only on pushes to dev"
+          echo "Current Time: $(date)"
+          
+      - name: 3. Show Current User
         run: whoami
+       

@@ -1,0 +1,17 @@
+name: Lab 1 - My Frist Automation
+
+on: [push]
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print My Goal
+        run: echo "Lab 1 Success"
+      
+      - name: Show Current Time
+        run: date

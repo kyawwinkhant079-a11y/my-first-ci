@@ -1,21 +1,22 @@
-name: Lab 4 - Docker Dry run
+name: Lab 5 - Artifacts Management
 on: [push]
 
-jobs:
-  DockerCheck:
+jobs: 
+  BuildAndSave:
     runs-on: ubuntu-latest
     steps:
       - name: 1. Checkout Code
         uses: actions/checkout@v4
       
-      - name: 2. Verify Docker Version
-        run: docker --version
-
-      - name: 3. Build Docker Image ( Dry Run )
+      - name: 2. Generate a Build File
         run: |
-          echo "Starting Docker build process ..."
-          docker build -t my-test-app:${{ github.sha }} .
-          echo "Docker Build completed successfully !"
+          mkdir build
+          echo "Build Version: ${{ github.sha }}" > build/result.txt
+          echo "Build Date: $(date)" >> build/result.txt
+          echo "This file was created by GitHub Actions" >> build/result.txt
 
-      - name: 4. Check Build Image
-        run: docker images
+      - name: 3. Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-build-artifact
+          path: build/

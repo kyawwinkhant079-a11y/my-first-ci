@@ -1,3 +1,3 @@
-FROM no-such-image-exists
+FROM nginx:alpine
 RUN echo "Building our lab image..."
 CMD ["echo", "Hello From lab 4 Container1"]

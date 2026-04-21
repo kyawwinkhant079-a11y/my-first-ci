@@ -1,0 +1,22 @@
+name: Lab 5 - Artifacts Management
+on: [push]
+
+jobs: 
+  BuildAndSave:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 2. Generate a Build File
+        run: |
+          mkdir build
+          echo "Build Version: ${{ github.sha }}" > build/result.txt
+          echo "Build Date: $(date)" >> build/result.txt
+          echo "This file was created by GitHub Actions" >> build/result.txt
+
+      - name: 3. Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-build-artifact
+          path: build/
